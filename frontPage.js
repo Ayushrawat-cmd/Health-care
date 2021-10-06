@@ -1,15 +1,11 @@
 const express = require("express");
-const _ = require("lodash");
 const http = require("https");
 const fs = require("fs");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const session = require("express-session");
 const passport = require("passport") ;
 const passportLocalMongoose = require("passport-local-mongoose");
-const { json } = require("body-parser");
 
-const saltRounds= 10;
 const app = express();
 
 app.set('view engine', 'ejs');
