@@ -1,0 +1,160 @@
+
+
+a:hover{
+    color: black;
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+a.appointment{
+    color: blueviolet;
+}
+h1{
+    font-size: 2.25rem;
+    font-family: 'Montserrat', sans-serif;
+    margin: 40px auto;
+    margin-bottom: 25px;
+    color: red;
+    font-weight: bold;
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+}
+
+ul {
+    list-style-type: disc !important;
+    padding-left:1em !important;
+    margin-left:1em;
+    
+}
+
+li{
+    text-align: left;
+}
+
+.survey-content{
+    margin: auto 100px 40px;
+    text-align: center ;
+    color: black;
+    font-family: 'ubuntu';
+    font-size: 1.75rem;
+}
+
+a.corona{
+    color: blue;
+}
+a.corona:focus{
+    color: red;
+}
+
+
+
+#vaccine-awareness{
+    margin-top: 100px;
+    background-color: #FE8F8F;
+}
+
+#survey{
+    margin: 40px auto 40px;
+    width: 350px;
+    text-align:center;    
+}
+
+.carousel-item{
+    padding:0% 5% ;
+}
+
+h1.vaccine-heading{
+    font-family: 'Merriweather', serif;
+    color: blanchedalmond;
+    margin: 40px 100px 20px;
+    font-size: 3.5rem;
+    text-align: center;
+    
+}
+
+a.vaccine-names{
+    margin: auto 60px;
+    width: max-content;
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+
+}
+
+#vaccine-image{
+    width: 300px;
+
+}
+
+.vaccine-content{
+    font-family: 'ubuntu';
+    text-align: left;  
+    font-size: 1.25rem; 
+    margin: auto 60px;
+}
+
+a.sputnik-vaccine{
+    margin-bottom: 10px;
+    margin-left: 30px;
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+
+}
+
+.sputnik-content{
+    font-family: 'ubuntu';
+    font-size: 1.25rem; 
+    text-align:left;
+    margin-left: 100px;
+    margin-top: 40px;
+    
+}
+
+a.johnson{
+    font-size: 2.3rem;
+    font-family: 'Dancing Script', cursive;
+    margin-left: 20px;
+    
+}
+
+a.btn:hover{
+    text-decoration: none;
+}
+
+.btn-google {
+    color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px 1px #ddd;
+    width: fit-content;
+    padding: auto 5px;
+}
+
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center
+}
+
+img.center{
+    display: block;
+    margin: 50px auto;
+}
+footer{
+    background-color: #20313b;
+    color: blanchedalmond;
+}
