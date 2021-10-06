@@ -31,6 +31,8 @@ app.get("/", function (req,res) {
     res.sendFile(__dirname+"/Public/frontpage.html")
   });
 
+/********************************************Api calling*****************************************************/
+
 app.get("/aboutCovid", function(request,respond){
     const options = {
         "method": "GET",
@@ -56,7 +58,6 @@ app.get("/aboutCovid", function(request,respond){
         res.on("end", function () {
             const body = Buffer.concat(chunks);
             const info = JSON.parse(body);
-            console.log(info.world_total);
             var cases = info.countries_stat[1].cases;
             var new_cases = info.countries_stat[1].new_cases;
             var total_recovered = info.countries_stat[1].total_recovered;
@@ -144,7 +145,6 @@ app.post("/login", function(req,res){
         else{
             
             if(found){
-                console.log(found);  
                 const user =  User({
                     email: req.body.username,
                     password: req.body.password
@@ -271,9 +271,14 @@ app.post("/tracker/:customName/delete",function(req,res){
     
 });
 
+/*********************************listening port***************************************************/
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-app.listen(3000, function(err){
+app.listen(port, function(err){
     if(err){
         console.log(err);
     }
