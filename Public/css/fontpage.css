@@ -6,8 +6,10 @@ a:hover{
     text-decoration: underline;
 }
 
-a.appointment{
-    color: blueviolet;
+.appointment{
+    display: flex;
+    align-items: center;
+    align-content: center;   
 }
 h1{
     font-size: 2.25rem;
