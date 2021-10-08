@@ -154,39 +154,7 @@ app.get("/login",function(req,res) {
     res.render("login");
 });
 
-// app.post("/login", function(req,res){
-//     const mail = req.body.username;
-//     User.findOne({username: mail}, function(err,found){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-            
-//             if(found){
-//                 const user =  User({
-//                     email: req.body.username,
-//                     password: req.body.password
-//                 });
-//                 req.login(user,function(err){
-//                     if(err){
-//                         console.log(err);
-                        
-//                     }
-//                     else{
-//                         passport.authenticate("local")(req,res,function(){
-//                             res.redirect("/tracker/"+found._id); 
-//                         });
 
-//                     }
-//                 });
-//             }
-//             else{
-//                 res.redirect("/#signup");
-//             }
-//         }
-//     });
-    
-// });
 app.post("/login", function(req,res){
     const mail = req.body.username;
     User.findOne({username: mail}, function(err,found){
