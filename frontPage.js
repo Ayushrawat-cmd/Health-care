@@ -88,6 +88,28 @@ app.get("/video", function(req,res){
     videoStream.pipe(res);
 }); 
 
+app.get("/corona", function(req,res){
+    const range = req.headers.range;
+    if(!range){
+        res.status(400).send("Requires range header")
+    }
+    const videoPath = __dirname+"/Coronavirus.mp4";
+    const videoSize = fs.statSync(__dirname+"/Coronavirus.mp4").size;
+    const chunk_size = 10 ** 6;
+    const start = Number(range.replace(/\D/g, ""));
+    const end = Math.min(start + chunk_size , videoSize - 1);
+    const contentLength = end - start + 1;
+    const header = {
+        "content-Range": `bytes ${start}-${end}/${videoSize}`,
+        "Accept-Ranges": "bytes",
+        "Content-Length": contentLength,
+        "Content-Type": "video/mp4"
+    };
+    res.writeHead(206, header);
+    const videoStream = fs.createReadStream(videoPath,{start, end});
+    videoStream.pipe(res);
+}); 
+
 
 
 /*********************************************  Authentication************************************/
@@ -132,6 +154,39 @@ app.get("/login",function(req,res) {
     res.render("login");
 });
 
+// app.post("/login", function(req,res){
+//     const mail = req.body.username;
+//     User.findOne({username: mail}, function(err,found){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+            
+//             if(found){
+//                 const user =  User({
+//                     email: req.body.username,
+//                     password: req.body.password
+//                 });
+//                 req.login(user,function(err){
+//                     if(err){
+//                         console.log(err);
+                        
+//                     }
+//                     else{
+//                         passport.authenticate("local")(req,res,function(){
+//                             res.redirect("/tracker/"+found._id); 
+//                         });
+
+//                     }
+//                 });
+//             }
+//             else{
+//                 res.redirect("/#signup");
+//             }
+//         }
+//     });
+    
+// });
 app.post("/login", function(req,res){
     const mail = req.body.username;
     User.findOne({username: mail}, function(err,found){
@@ -145,19 +200,26 @@ app.post("/login", function(req,res){
                     email: req.body.username,
                     password: req.body.password
                 });
-                req.login(user,function(err){
+                passport.authenticate("local", function(err,user,info){
                     if(err){
                         console.log(err);
-                        
+                    }
+                    if(!user){
+                        res.send({success:false, message:'Incorrect password'});
                     }
                     else{
-                        passport.authenticate("local")(req,res,function(){
-                            res.redirect("/tracker/"+found._id); 
+                        req.login(user,function(err){
+                            if(err){
+                                console.log(err);
+                                
+                            }
+                            else{
+                                res.redirect("/tracker/"+found._id); 
+                            }
                         });
-                        // res.redirect("/login");
-
                     }
-                });
+                })(req,res);
+                
             }
             else{
                 res.redirect("/#signup");
@@ -184,7 +246,7 @@ const item2 = new Item({
     
 });
 const item3 = new Item({
-    name:"<-- Hit this to delete the item"
+    name:"Tick the check box to delete the item"
     
 });
 const defaultItems = [item1,item2,item3];
@@ -206,7 +268,7 @@ app.get("/tracker/:customName", function(req,res){
             console.log(err);
         }
         else{
-            if(!result){
+            if(!result ){
                 const newList = new List({
                     user_id: customSchema,
                     name: "Add your vaccination date",
